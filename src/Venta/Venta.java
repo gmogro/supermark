@@ -104,6 +104,12 @@ public class Venta {
 					idVenta = rs.getInt("idventa");
 				}
 				
+				String fecha = "30-06-2022";
+				double total = 0;
+				for(int i=0;i<listaProductos.size();i++) {
+					total = total + (listaProductos.get(i).getPrecioUnitario()*listaProductos.get(i).getCantidad());
+				}
+				String observacion = "";
 				stmt = conexion.prepareStatement("INSERT INTO venta VALUES (?,?,?,?)");
 				stmt.setInt(1,idVenta+1);
 				stmt.setString(2,fecha);

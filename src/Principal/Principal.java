@@ -6,6 +6,7 @@ import Entidades.Cliente;
 import Utilidades.Conexion;
 import Venta.Categorias;
 import Venta.Productos;
+import Venta.Venta;
 
 public class Principal {
 	public static void main(String[] args) {
@@ -121,18 +122,13 @@ public class Principal {
 					sc.nextLine();
 					switch (optionCliente) {
 						case 1: {
-							Cliente cliente = new Cliente();
-							cliente.crearCliente(conexion.getConnection());
+							Venta venta = new Venta();
+							venta.crearVenta(conexion.getConnection());
 							break;
 						}
 						case 2: {
-							Cliente cliente = new Cliente();
-							cliente.actualizarCliente(conexion.getConnection());
-							break;
-						}
-						case 3: {
-							Cliente cliente = new Cliente();
-							cliente.eliminarCliente(conexion.getConnection());
+							Venta venta = new Venta();
+							//venta.anularVenta(conexion.getConnection());
 							break;
 						}
 						default:
