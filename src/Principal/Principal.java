@@ -13,6 +13,7 @@ public class Principal {
 		
 		Conexion conexion = new Conexion("root","Navidad$25","supermark");
 		conexion.conectar();
+		
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("#################");
@@ -55,12 +56,10 @@ public class Principal {
 								Categorias categoria = new Categorias();
 								categoria.eliminarCategoria(conexion.getConnection());
 								break;
-							}
-							default:
-								throw new IllegalArgumentException("Unexpected value: " + optionCategoria);
+								}
 							}
 						break;
-						}
+					}
 				case 2: {
 					System.out.println("1 - Crear Cliente");
 					System.out.println("2 - Actualizar Cliente");
@@ -82,16 +81,15 @@ public class Principal {
 							Cliente cliente = new Cliente();
 							cliente.eliminarCliente(conexion.getConnection());
 							break;
+							}
 						}
-						default:
-							throw new IllegalArgumentException("Unexpected value: " + optionCliente);
-						}
-						break;
+					break;
 					}
 				case 3: {
 					System.out.println("1 - Crear Producto");
 					System.out.println("2 - Actualizar Producto");
 					System.out.println("3 - Eliminar Producto");
+					System.out.println("4 - Listado de Productos");
 					int optionProducto = sc.nextInt();
 					sc.nextLine();
 					switch (optionProducto) {
@@ -109,36 +107,60 @@ public class Principal {
 							Productos producto = new Productos();
 							producto.eliminarProducto(conexion.getConnection());
 							break;
+							}
+						case 4: {
+							Productos producto = new Productos();
+							producto.listadoProducto(conexion.getConnection());
+							break;
+							}
 						}
-						default:
-							throw new IllegalArgumentException("Unexpected value: " + optionProducto);
-						}
-						break;
+					break;
 					}
 				case 4: {
 					System.out.println("1 - Crear Venta");
 					System.out.println("2 - Anular Venta");
+					System.out.println("3 - Ver todos los usuarios que realizaron una compra");
+					System.out.println("4 - Ver listado de productos seleccionados por el Cliente");
 					int optionCliente = sc.nextInt();
 					sc.nextLine();
 					switch (optionCliente) {
-						case 1: {
-							Venta venta = new Venta();
-							venta.crearVenta(conexion.getConnection());
-							break;
+							case 1: {
+								Venta venta = new Venta();
+								venta.crearVenta(conexion.getConnection());
+								break;
+							}
+							case 2: {
+								Venta venta = new Venta();
+								venta.anularVenta(conexion.getConnection());
+								break;
+							}
+							case 3: {
+								Venta venta = new Venta();
+								venta.verClienteVenta(conexion.getConnection());
+								break;
+							}
+							case 4: {
+								Venta venta = new Venta();
+								venta.verProductoUsuario(conexion.getConnection());
+								break;
+							}
 						}
-						case 2: {
-							Venta venta = new Venta();
-							//venta.anularVenta(conexion.getConnection());
-							break;
-						}
-						default:
-							throw new IllegalArgumentException("Unexpected value: " + optionCliente);
-						}
-						break;
+					break;
 					}
-				default:
-					throw new IllegalArgumentException("Unexpected value: " + option);
+				case 5: {
+					System.out.println("##################");
+					System.out.println("Seccion de Reportes");
+					System.out.println("##################");
+					break;
+				}
 			}
+			System.out.println("##################");
+			System.out.println("¿Cierra el Sistema?");
+			System.out.println("0 - SI");
+			System.out.println("1 - NO");
+			System.out.println("##################");
+			option = sc.nextInt();
+			sc.nextLine();
 		}while(option==1);
 		
 		System.out.println("FIN DIA LABORAL");

@@ -234,4 +234,33 @@ public class Productos {
 	        }
 		}
 	}
+	
+	public void listadoProducto(Connection connection) 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("###############################");
+		System.out.println("Listado de Producto");
+		System.out.println("###############################");
+		try {
+			Statement stmt = connection.createStatement();
+			String sql = "SELECT idproducto,p.Nombre,p.Precio,c.nombre FROM producto p "
+					+ "INNER JOIN categoria AS c ON p.idcategoria = c.idCategoria "
+					+ "WHERE p.stock > 0 "
+					+ "ORDER BY idproducto";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) 
+			{
+				String idproducto = rs.getString("idproducto");
+				String nombre = rs.getString("Nombre");
+				System.out.println(idproducto + " : " + nombre);
+			}
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("##################################");
+	}
+
 }
